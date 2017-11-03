@@ -30,16 +30,13 @@
     <div ng-include="'views/header.html'"></div>
 
     <div class="container">
-        <div ui-view></div>
+      <div class="row">
+        <div class="ui-view-container">
+          <div ui-view></div>
+        </div>
+      </div>
       <toaster-container toaster-options="{'close-button': true,'position-class': 'toast-top-right'}"></toaster-container>
 
-    </div>
-
-
-    <div class="footer">
-      <div class="container">
-        <p><span class="glyphicon glyphicon-heart"></span> Cards inc</p>
-      </div>
     </div>
 
 
