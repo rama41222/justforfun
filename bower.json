@@ -4,7 +4,9 @@
   "dependencies": {
     "angular": "^1.4.0",
     "bootstrap": "^3.2.0",
-    "angular-ui-router": "^1.0.10"
+    "angular-ui-router": "^1.0.10",
+    "glyphicons": "^0.0.2",
+    "glyphicons-halflings": "*"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"
