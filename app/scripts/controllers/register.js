@@ -10,13 +10,13 @@
 angular.module('justforfunApp')
   .controller('RegisterCtrl', function ($scope, $http,toaster) {
     $scope.submit = function () {
-      var url = '/d.commmm';
+      var url = 'http://localhost:9090/register';
       var user = {
-        email:'ee@ee.com',
-        pass:'ee'
+        email: $scope.email,
+        password: $scope.password,
       }
       $http.post(url, user).then(function (response) {
-        // toaster.pop('success', e.statusText, 'Server Error');
+        toaster.pop('success', 'Success', response.data.user.email);
       }).catch(function (e) {
         toaster.pop('error', e.statusText, 'Server Error');
       })
