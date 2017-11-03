@@ -8,7 +8,7 @@
  * Controller of the justforfunApp
  */
 angular.module('justforfunApp')
-  .controller('RegisterCtrl', function ($scope, $http,toaster) {
+  .controller('RegisterCtrl', function ($scope, $http,toaster, authToken) {
     $scope.submit = function () {
       var url = 'http://localhost:9090/register';
       var user = {
@@ -17,6 +17,7 @@ angular.module('justforfunApp')
       }
       $http.post(url, user).then(function (response) {
         toaster.pop('success', 'Success', response.data.email);
+        authToken.setToken(response.token)
       }).catch(function (e) {
         console.log(e)
         toaster.pop('error', e.statusText, 'Server Error');
