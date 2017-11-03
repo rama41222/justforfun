@@ -16,8 +16,9 @@ angular.module('justforfunApp')
         password: $scope.password,
       }
       $http.post(url, user).then(function (response) {
-        toaster.pop('success', 'Success', response.data.user.email);
+        toaster.pop('success', 'Success', response.data.email);
       }).catch(function (e) {
+        console.log(e)
         toaster.pop('error', e.statusText, 'Server Error');
       })
     }
