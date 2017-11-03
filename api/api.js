@@ -8,6 +8,7 @@ var jwt = require('jwt-simple')
 // var jwt = require('./services/jwt')
 var passport = require('passport')
 var LocalStrategy = require('passport-local').Strategy;
+var request = require('request')
 
 
 mongoose.Promise = bluebird
@@ -139,6 +140,17 @@ console.log(req.headers.authorization)
 
 app.post('/auth/google', function (req, res) {
   console.log(req.body.code)
+  var url =  'https://www.googleapis.com/oauth2/v4/token'
+  var params = {
+    client_id: req.body.client_id,
+    redirect_uri: req.body.redirect_uri,
+    code: req.body.code,
+    grant_type: 'authorization_code',
+    client_secret: ''
+  }
+  request.post(url, {json: true,form: params}, function (err, response, token) {
+      console.log(token)
+  })
   res.status(204).send()
 })
 

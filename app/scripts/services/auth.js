@@ -18,8 +18,9 @@ angular.module('justforfunApp').service('auth', function (API_URL, authToken, $h
   }
 
   var urlBuilder = []
+  var clientId = '791834574695-2qa67rdsq3354pe9vt572331auhsoqoi.apps.googleusercontent.com'
   urlBuilder.push('response_type=code',
-    'client_id=791834574695-2qa67rdsq3354pe9vt572331auhsoqoi.apps.googleusercontent.com',
+    'client_id=' + clientId,
     'redirect_uri='+window.location.origin,
     'scope=profile email '
 
@@ -42,7 +43,12 @@ angular.module('justforfunApp').service('auth', function (API_URL, authToken, $h
       if(event.origin === $window.location.origin) {
         popup.close()
         var code = event.data
-        $http.post(API_URL+'auth/google', {code:code})
+        $http.post(API_URL+'auth/google', {
+          code: code,
+          client_id: clientId,
+          redirect_uri:window.location.origin,
+
+        })
       }
     })
   }
