@@ -135,6 +135,14 @@ console.log(req.headers.authorization)
   res.status(200).send(cards)
 })
 
+
+
+app.post('/auth/google', function (req, res) {
+  console.log(req.body.code)
+  res.status(204).send()
+})
+
+
 mongoose.connect('mongodb://localhost/cards', { useMongoClient: true})
 
 var server  = app.listen(9090, function () {
