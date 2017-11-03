@@ -8,7 +8,7 @@
  *
  * Main module of the application.
  */
-angular.module('justforfunApp').config(function($urlRouterProvider, $stateProvider){
+angular.module('justforfunApp').config(function($urlRouterProvider, $stateProvider, $httpProvider){
   $urlRouterProvider.otherwise('/');
   $stateProvider.state('main',{
       url: '/',
@@ -27,4 +27,7 @@ angular.module('justforfunApp').config(function($urlRouterProvider, $stateProvid
     controller: 'CardsCtrl'
   })
 
-});
+  $httpProvider.interceptors.push('authinterceptor')
+
+})
+  .constant('API_URL','http://localhost:9090/')

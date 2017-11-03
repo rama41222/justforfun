@@ -14,17 +14,17 @@ app.use(cors())
 app.post('/register', (req, res) => {
   var user =  req.body;
 
-var newUser = new User.model({
-    email: user.email,
-    password: user.password
-  });
+  var newUser = new User.model({
+      email: user.email,
+      password: user.password
+    });
 
-var payload  = {
-  iss: req.hostname,
-  sub: user._id,
-}
+  var payload  = {
+    iss: req.hostname,
+    sub: newUser.id,
+  }
 
-var token = jwt.encode(payload,'shhhh')
+  var token = jwt.encode(payload,'shhhh')
 
   newUser.save().then( user => {
     res.status(200).send({user: user.toJSON(), token: token })
@@ -76,13 +76,16 @@ var orders= [
 
 ]
 app.get('/cards', function (req, res) {
+
   if(!req.headers.authorization) {
     return res.status(401).json({error:'You are not authorized'})
   }
+console.log(req.headers.authorization)
+  var token = req.headers.authorization.split(' ')[1]
+  var payload = jwt.decode(token, 'shhhh')
+
   res.status(200).send(cards)
 })
-
-
 
 mongoose.connect('mongodb://localhost/cards', { useMongoClient: true})
 

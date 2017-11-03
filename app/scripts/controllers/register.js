@@ -17,7 +17,7 @@ angular.module('justforfunApp')
       }
       $http.post(url, user).then(function (response) {
         toaster.pop('success', 'Account Created!', 'Welcome '+ response.data.user.email + '!');
-        authToken.setToken(response.token)
+        authToken.setToken(response.data.token)
       }).catch(function (e) {
         console.log(e)
         toaster.pop('error', e.statusText, 'Server Error');
