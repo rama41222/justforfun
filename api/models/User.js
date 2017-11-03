@@ -6,6 +6,8 @@ mongoose.Promise = bluebird
 var UserSchema = mongoose.Schema({
   email :String,
   password: String,
+  googleId: String,
+  displayName: String
 })
 
 UserSchema.pre('save',function (next) {

@@ -141,6 +141,7 @@ console.log(req.headers.authorization)
 app.post('/auth/google', function (req, res) {
   console.log(req.body.code)
   var url =  'https://www.googleapis.com/oauth2/v4/token'
+  var apiUrl = 'https://www.googleapis.com/plus/v1/people/me/openIdConnect'
   var params = {
     client_id: req.body.client_id,
     redirect_uri: req.body.redirect_uri,
@@ -149,9 +150,36 @@ app.post('/auth/google', function (req, res) {
     client_secret: ''
   }
   request.post(url, {json: true,form: params}, function (err, response, token) {
-      console.log(token)
+      var accessToken = token.access_token
+    console.log('------------ Access Token---------')
+    console.log(accessToken)
+    var headers = {
+      Authorization: 'Bearer ' + accessToken
+    }
+
+    request.get({url: apiUrl, headers: headers, json: true}, function (err, response, profile) {
+      console.log(profile)
+      User.findOne({googleId: profile.sub}, function (err, foundUser) {
+          if(foundUser){
+            return createSendToken(foundUser, res)
+          }
+
+          var newUser = new User();
+          newUser.googleId = profile.sub
+          newUser.displayName = profile.name
+          newUser.save(function (err) {
+
+            if(err){
+              return next(err)
+            }
+            createSendToken(newUser, res)
+
+          })
+
+      })
+    })
+
   })
-  res.status(204).send()
 })
 
 

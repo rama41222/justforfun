@@ -7,7 +7,7 @@
  * # auth
  * Service in the justforfunApp.
  */
-angular.module('justforfunApp').service('auth', function (API_URL, authToken, $http, $state, $window) {
+angular.module('justforfunApp').service('auth', function (API_URL, authToken, $http, $state, $window, $q, toaster) {
     var url = API_URL+'login'
     this.login = function (email, password) {
       return $http.post(url, { email:email, password: password })
@@ -29,14 +29,8 @@ angular.module('justforfunApp').service('auth', function (API_URL, authToken, $h
   this.googleAuth = function () {
       var url = "https://accounts.google.com/o/oauth2/v2/auth?"+ urlBuilder.join('&')
       var options = "width=500, height=500,left="+($window.outerWidth - 500) /2 + ",top=" +($window.outerHeight - 500)/2.5
+    var deffered = $q.defer()
 
-    // scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive.metadata.readonly&
-    // access_type=offline&
-    // include_granted_scopes=true&
-    // state=state_parameter_passthrough_value&
-    // redirect_uri=http%3A%2F%2Foauth2.example.com%2Fcallback&
-    // response_type=code&
-    // client_id=client_id
     var popup = $window.open(url, '', options)
     $window.focus()
     $window.addEventListener('message', function (event) {
@@ -48,9 +42,17 @@ angular.module('justforfunApp').service('auth', function (API_URL, authToken, $h
           client_id: clientId,
           redirect_uri:window.location.origin,
 
+        }).then(function (response) {
+          console.log(response)
+          authToken.setToken(response.data.token)
+          deffered.resolve(response)
+        }).catch(function (error) {
+          console.log(error)
+          toaster.pop('error', error.statusText, error.data.message);
         })
       }
     })
+    return deffered.promise
   }
 
   });
