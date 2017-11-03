@@ -16,7 +16,7 @@ angular.module('justforfunApp')
         password: $scope.password,
       }
       $http.post(url, user).then(function (response) {
-        toaster.pop('success', 'Success', response.data.email);
+        toaster.pop('success', 'Account Created!', 'Welcome '+ response.data.user.email + '!');
         authToken.setToken(response.token)
       }).catch(function (e) {
         console.log(e)

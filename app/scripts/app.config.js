@@ -18,6 +18,13 @@ angular.module('justforfunApp').config(function($urlRouterProvider, $stateProvid
       url: '/register',
       templateUrl:'/views/register.html',
       controller:'RegisterCtrl'
-  });
+  }).state('logout', {
+    url: '/logout',
+    controller: 'LogoutCtrl'
+  }).state('cards', {
+    url: '/cards',
+    templateUrl: '/views/cards.html',
+    controller: 'CardsCtrl'
+  })
 
 });
