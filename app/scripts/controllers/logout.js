@@ -8,7 +8,7 @@
  * Controller of the justforfunApp
  */
 angular.module('justforfunApp')
-  .controller('LogoutCtrl', function (authToken, $state) {
-    authToken.removeToken()
+  .controller('LogoutCtrl', function ($auth, $state) {
+    $auth.logout()
     $state.go('main')
   });

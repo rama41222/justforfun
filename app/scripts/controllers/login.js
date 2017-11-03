@@ -7,26 +7,24 @@
  * # LoginCtrl
  * Controller of the justforfunApp
  */
-angular.module('justforfunApp').controller('LoginCtrl', function ($scope ,toaster,authToken, auth, $state) {
+angular.module('justforfunApp').controller('LoginCtrl', function ($scope ,toaster, $state, $auth) {
   $scope.submit = function () {
-    auth.login($scope.email, $scope.password).then(function (response) {
-      console.log(response)
+    $auth.login({email:$scope.email, password:$scope.password}).then(function (response) {
       toaster.pop('success', 'Welcome!', 'How are you today, '+ response.data.user.email + '?');
-      authToken.setToken(response.data.token)
       $state.go('main')
-    }).catch(function (e) {
-      console.log(e)
-      toaster.pop('error', e.statusText, e.data.message);
-    })
+    }).catch(handleError)
   }
 
-  $scope.google = function () {
-    auth.googleAuth().then(function (res) {
-      console.log(res)
-      toaster.pop('success', 'Welcome!', 'How are you today '+ res.data.user.displayName+'?');
+  $scope.authenticate = function (provider) {
+    $auth.authenticate(provider).then(function (res) {
+      toaster.pop('success', 'Welcome!', 'How are you today '+ res.data.user.displayName +'?');
       $state.go('main')
-    }).catch(function (e) {
-      toaster.pop('error', 'Error!');
-    })
+    }).catch(handleError)
+
   }
-  });
+  function  handleError(err) {
+    toaster.pop('error', 'Something Wrong! ', err.message);
+  }
+
+});
+

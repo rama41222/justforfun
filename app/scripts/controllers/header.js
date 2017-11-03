@@ -7,6 +7,6 @@
  * # HeaderCtrl
  * Controller of the justforfunApp
  */
-angular.module('justforfunApp').controller('HeaderCtrl', function ($scope,authToken) {
-    $scope.isAuthenticated = authToken.isAuthenticated;
+angular.module('justforfunApp').controller('HeaderCtrl', function ($scope,$auth) {
+    $scope.isAuthenticated = $auth.isAuthenticated;
   });

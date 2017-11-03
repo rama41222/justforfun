@@ -8,7 +8,7 @@
  *
  * Main module of the application.
  */
-angular.module('justforfunApp').config(function($urlRouterProvider, $stateProvider, $httpProvider){
+angular.module('justforfunApp').config(function($urlRouterProvider, $stateProvider, $httpProvider, $authProvider, API_URL){
   $urlRouterProvider.otherwise('/');
   $stateProvider.state('main',{
       url: '/',
@@ -30,6 +30,31 @@ angular.module('justforfunApp').config(function($urlRouterProvider, $stateProvid
     templateUrl:'/views/login.html',
     controller:'LoginCtrl'
   })
+
+  $authProvider.google({
+    clientId: '',
+    url : API_URL + 'auth/google'
+  })
+
+  $authProvider.loginUrl = API_URL + 'login'
+  $authProvider.signupUrl = API_URL + 'register'
+
+  $authProvider.google({
+    clientId: '791834574695-2qa67rdsq3354pe9vt572331auhsoqoi.apps.googleusercontent.com',
+    redirectUri: window.location.origin,
+    authorizationEndpoint: 'https://accounts.google.com/o/oauth2/auth',
+    requiredUrlParams:['scope'],
+    url: API_URL + 'auth/google',
+    scope: ['profile', 'email'],
+    display: 'popup',
+    oauthType: '2.0',
+    popupOptions: { width: 452, height: 633 }
+  });
+
+  $authProvider.facebook({
+    clientId: '1535547543206159',
+    url: API_URL + 'auth/facebook',
+  });
 
   $httpProvider.interceptors.push('authinterceptor')
 

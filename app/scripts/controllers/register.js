@@ -7,16 +7,14 @@
  * # RegisterCtrl
  * Controller of the justforfunApp
  */
-angular.module('justforfunApp').controller('RegisterCtrl', function ($scope,toaster, auth,$state,authToken) {
+angular.module('justforfunApp').controller('RegisterCtrl', function ($scope,toaster, $auth, $state) {
     $scope.submit = function () {
-
-      auth.register($scope.email, $scope.password).then(function (response) {
-        toaster.pop('success', 'Account Created!', 'Welcome '+ response.data.user.email + '!');
-        authToken.setToken(response.data.token)
+      $auth.signup({email: $scope.email, password: $scope.password}).then(function (response) {
+        $auth.setToken(response);
+        toaster.pop('success', 'Account Created!', 'Welcome '+ response.data.user.email + '!')
         $state.go('main')
       }).catch(function (e) {
-        console.log(e)
-        toaster.pop('error', e.statusText, 'User Exists');
+        toaster.pop('error', 'Error', e.message);
       })
     }
   });

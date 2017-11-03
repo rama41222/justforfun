@@ -9,6 +9,9 @@ var jwt = require('jwt-simple')
 var passport = require('passport')
 var LocalStrategy = require('passport-local').Strategy;
 var request = require('request')
+var facebookAuth = require('./services/facebookAuth')
+var createSendToken = require('./services/jwt')
+var config = require('./services/config')
 
 
 mongoose.Promise = bluebird
@@ -74,16 +77,6 @@ app.post('/register',passport.authenticate('local-register'), function(req, res)
 //0 - artificial
 //1 - natural
 
-function createSendToken(user, res) {
-  var payload  = {
-    sub: user.id,
-  }
-  var token = jwt.encode(payload,'shhhh')
-  res.status(200).send({user: user.toJSON(), token: token })
-
-
-}
-
 var cards = [
   {name:'card1', image:'image', price:10.23 , type:'0'},
   {name:'card1', image:'image', price:10.23 , type:'0'},
@@ -139,20 +132,17 @@ console.log(req.headers.authorization)
 
 
 app.post('/auth/google', function (req, res) {
-  console.log(req.body.code)
   var url =  'https://www.googleapis.com/oauth2/v4/token'
   var apiUrl = 'https://www.googleapis.com/plus/v1/people/me/openIdConnect'
   var params = {
-    client_id: req.body.client_id,
-    redirect_uri: req.body.redirect_uri,
+    client_id: req.body.clientId,
+    redirect_uri: req.body.redirectUri,
     code: req.body.code,
     grant_type: 'authorization_code',
-    client_secret: ''
+    client_secret: config.GOOGLE_SECRET
   }
   request.post(url, {json: true,form: params}, function (err, response, token) {
       var accessToken = token.access_token
-    console.log('------------ Access Token---------')
-    console.log(accessToken)
     var headers = {
       Authorization: 'Bearer ' + accessToken
     }
@@ -182,6 +172,7 @@ app.post('/auth/google', function (req, res) {
   })
 })
 
+app.post('/auth/facebook', facebookAuth)
 
 mongoose.connect('mongodb://localhost/cards', { useMongoClient: true})
 
