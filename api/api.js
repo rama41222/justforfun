@@ -6,6 +6,9 @@ var bluebird = require('bluebird')
 var User = require('./models/User')
 var jwt = require('jwt-simple')
 // var jwt = require('./services/jwt')
+var passport = require('passport')
+var LocalStrategy = require('passport-local').Strategy;
+
 
 mongoose.Promise = bluebird
 
@@ -13,39 +16,59 @@ mongoose.Promise = bluebird
 var app = express()
 app.use(bodyParser.json())
 app.use(cors())
-
-app.post('/login', function(req, res) {
-  req.user =  req.body;
-  User.findOne({email: req.user.email}, function(err, user) {
-    if (err) throw err
-
-    if(!user)
-      return res.status(401).send({message: 'User does not exist'})
-
-    user.comparePasswords(req.user.password, function (err, isMatch) {
-        if(err) throw  err
-
-        if(!isMatch)
-          return res.status(401).send({message: 'Wrong email/password'})
-
-      createSendToken(user, res)
-    })
-  })
-
+app.use(passport.initialize())
+passport.serializeUser(function (user, done) {
+  done(null, user.id)
 })
 
-app.post('/register', function(req, res) {
-  var user =  req.body;
-  var newUser = new User({
-      email: user.email,
-      password: user.password
+var strategyOptions = {usernameField: 'email'}
+var loginStrategy = new LocalStrategy(strategyOptions , function (email, password, done) {
+  User.findOne({email: email}, function(err, user) {
+    if (err) return done(err)
+
+    if(!user)
+      return done(null, false, {message: 'User does not exist'})
+
+    user.comparePasswords(password, function (err, isMatch) {
+      if (err) return done(err)
+
+        if(!isMatch)
+          return done(null, false,{message: 'Wrong email/password'})
+
+      return done(null, user)
+    })
+  })
+})
+
+var registerStrategy = new LocalStrategy(strategyOptions ,function (email, password,done) {
+
+  User.findOne({email: email}, function(err, user) {
+    if (err) return done(err)
+
+    if (user)
+      return done(null, false, {message: 'User already exist'})
+
+
+    var newUser = new User({
+      email: email,
+      password: password
     });
 
-  newUser.save().then(function(user) {
-    createSendToken(newUser, res)
-  }).catch( function(e){
-   res.status(500).json({error: e.message})
+    newUser.save(function (err) {
+      done(null, newUser)
+    })
   })
+})
+
+passport.use('local-register',registerStrategy)
+passport.use('local-login',loginStrategy)
+
+app.post('/login', passport.authenticate('local-login'),function(req, res, next) {
+  createSendToken(req.user, res)
+})
+
+app.post('/register',passport.authenticate('local-register'), function(req, res) {
+    createSendToken(req.user, res)
 })
 //0 - artificial
 //1 - natural

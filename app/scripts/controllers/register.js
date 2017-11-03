@@ -16,7 +16,7 @@ angular.module('justforfunApp').controller('RegisterCtrl', function ($scope,toas
         $state.go('main')
       }).catch(function (e) {
         console.log(e)
-        toaster.pop('error', e.statusText, 'Server Error');
+        toaster.pop('error', e.statusText, 'User Exists');
       })
     }
   });
