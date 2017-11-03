@@ -25,6 +25,10 @@ angular.module('justforfunApp').config(function($urlRouterProvider, $stateProvid
     url: '/cards',
     templateUrl: '/views/cards.html',
     controller: 'CardsCtrl'
+  }).state('login',{
+    url: '/login',
+    templateUrl:'/views/login.html',
+    controller:'LoginCtrl'
   })
 
   $httpProvider.interceptors.push('authinterceptor')

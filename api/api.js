@@ -4,36 +4,61 @@ var cors = require('cors')
 var mongoose = require('mongoose')
 var bluebird = require('bluebird')
 var User = require('./models/User')
-var jwt = require('./services/jwt')
+var jwt = require('jwt-simple')
+// var jwt = require('./services/jwt')
+
 mongoose.Promise = bluebird
+
 
 var app = express()
 app.use(bodyParser.json())
 app.use(cors())
 
-app.post('/register', (req, res) => {
-  var user =  req.body;
+app.post('/login', function(req, res) {
+  req.user =  req.body;
+  User.findOne({email: req.user.email}, function(err, user) {
+    if (err) throw err
 
-  var newUser = new User.model({
+    if(!user)
+      return res.status(401).send({message: 'User does not exist'})
+
+    user.comparePasswords(req.user.password, function (err, isMatch) {
+        if(err) throw  err
+
+        if(!isMatch)
+          return res.status(401).send({message: 'Wrong email/password'})
+
+      createSendToken(user, res)
+    })
+  })
+
+})
+
+app.post('/register', function(req, res) {
+  var user =  req.body;
+  var newUser = new User({
       email: user.email,
       password: user.password
     });
 
-  var payload  = {
-    iss: req.hostname,
-    sub: newUser.id,
-  }
-
-  var token = jwt.encode(payload,'shhhh')
-
-  newUser.save().then( user => {
-    res.status(200).send({user: user.toJSON(), token: token })
-  }).catch( e => {
+  newUser.save().then(function(user) {
+    createSendToken(newUser, res)
+  }).catch( function(e){
    res.status(500).json({error: e.message})
   })
 })
 //0 - artificial
 //1 - natural
+
+function createSendToken(user, res) {
+  var payload  = {
+    sub: user.id,
+  }
+  var token = jwt.encode(payload,'shhhh')
+  res.status(200).send({user: user.toJSON(), token: token })
+
+
+}
 
 var cards = [
   {name:'card1', image:'image', price:10.23 , type:'0'},
