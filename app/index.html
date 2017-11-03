@@ -10,6 +10,9 @@
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="bower_components/glyphicons/styles/glyphicons.css" />
+    <link rel="stylesheet" href="bower_components/glyphicons-halflings/css/glyphicons-halflings.css" />
+    <link rel="stylesheet" href="bower_components/AngularJS-Toaster/toaster.css" />
+    <link rel="stylesheet" href="bower_components/animate.css/animate.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -18,7 +21,7 @@
     <link rel="stylesheet" href="styles/bootstrap-flaty.css" />
 
   </head>
-  <body ng-app="justforfunApp">
+  <body ng-app="justforfunApp" ng-cloak>
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -52,6 +55,8 @@
 
     <div class="container">
         <div ui-view></div>
+      <toaster-container toaster-options="{'close-button': true,'position-class': 'toast-top-right'}"></toaster-container>
+
     </div>
 
 
@@ -60,6 +65,7 @@
         <p><span class="glyphicon glyphicon-heart"></span> Cards inc</p>
       </div>
     </div>
+
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -79,6 +85,8 @@
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/AngularJS-Toaster/toaster.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 

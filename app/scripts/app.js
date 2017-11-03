@@ -9,4 +9,4 @@
  * Main module of the application.
  */
 angular
-  .module('justforfunApp', ["ui.router"] );
+  .module('justforfunApp', ["ui.router","toaster"] );
