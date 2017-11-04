@@ -78,13 +78,13 @@ app.post('/register',passport.authenticate('local-register'), function(req, res)
 //1 - natural
 
 var cards = [
-  {name:'card1', image:'image', price:10.23 , type:'0'},
-  {name:'card1', image:'image', price:10.23 , type:'0'},
-  {name:'card1', image:'image', price:10.23 , type:'0'},
-  {name:'card1', image:'image', price:10.23 , type:'1'},
-  {name:'card1', image:'image', price:10.23 , type:'1'},
-  {name:'card1', image:'image', price:10.23 , type:'0'},
-  {name:'card1', image:'image', price:10.23 , type:'1'},
+  {id:'1', name:'Naturalist', image:'http://hgtvhome.sndimg.com/content/dam/images/hgtv/fullset/2010/9/7/9/RX-DK-AGX12004_natural-card_s3x4.jpg.rend.hgtvcom.1280.1707.suffix/1400956956111.jpeg', price:10.23 , type:'0'},
+  {id:'2', name:'Wonders', image:'http://hgtvhome.sndimg.com/content/dam/images/hgtv/fullset/2010/9/7/9/RX-DK-AGX12101_completed-card_s3x4.jpg.rend.hgtvcom.1280.1707.suffix/1400956850313.jpeg', price:10.23 , type:'0'},
+  {id:'3', name:'Lorem Series', image:'http://hgtvhome.sndimg.com/content/dam/images/hgtv/fullset/2010/9/7/8/RX-DK-AGX12003_leaf-cover_s3x4.jpg.rend.hgtvcom.1280.1707.suffix/1400956635381.jpeg', price:10.23 , type:'0'},
+  {id:'4', name:'Wind', image:'https://i.pinimg.com/originals/c2/f5/75/c2f575e448241d63ecfa13abcb3db326.jpg', price:10.23 , type:'1'},
+  {id:'5', name:'Supernova', image:'https://i.pinimg.com/736x/3c/33/b2/3c33b2dffb4af5a2b8bfee50e7037465--artist-card-paper-cards.jpg', price:10.23 , type:'1'},
+  {id:'6', name:'Sparks', image:'https://i.pinimg.com/736x/0a/e1/a4/0ae1a499b666186ce87439209577a4cd.jpg', price:10.23 , type:'0'},
+  {id:'7', name:'Wrgiht', image:'https://render.fineartamerica.com/images/rendered/medium/greeting-card/images-medium-5/together-veikko-suikkanen.jpg?&targetx=0&targety=-25&imagewidth=500&imageheight=751&modelwidth=500&modelheight=700&backgroundcolor=877435&orientation=1', price:10.23 , type:'1'},
 
 ]
 

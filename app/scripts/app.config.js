@@ -12,7 +12,8 @@ angular.module('justforfunApp').config(function($urlRouterProvider, $stateProvid
   $urlRouterProvider.otherwise('/');
   $stateProvider.state('main',{
       url: '/',
-      templateUrl:'/views/main.html'
+      templateUrl:'/views/main.html',
+      controller:'MainCtrl'
     })
     .state('register',{
       url: '/register',

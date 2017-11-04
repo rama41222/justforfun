@@ -130,7 +130,7 @@ body {
   position: absolute;
   left: 0;
   right: 0;
-  transition: all .25s ease-in-out;
+  transition: all .3s ease-in-out;
 }
 
 [ui-view].ng-enter{
@@ -192,4 +192,39 @@ body {
 
 footer {
   background-color: #f0eee5;
+}
+
+.box-wrapper{
+  border-style: solid;
+  border-width: 1px;
+  border-color: #f3efdb;
+  margin:10px;
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 300px;
+  display: inline-block;
+  overflow: hidden;
+  width: 200px;
+  color: #020001;
+  cursor: pointer!important;
+}
+
+.box-wrapper:hover{
+
+  transition: 0.10s;
+  border-color: #ffd4c0;
+  color: #3e001c;
+}
+
+.no-styles{
+  text-decoration: none !important;
+  color: #FF8800 !important;
+}
+
+.tit{
+  color: #eceff1
+}
+
+.img_circ {
+  border-radius: 10px !important;
 }
