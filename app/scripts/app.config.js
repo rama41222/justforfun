@@ -30,7 +30,20 @@ angular.module('justforfunApp').config(function($urlRouterProvider, $stateProvid
     url: '/login',
     templateUrl:'/views/login.html',
     controller:'LoginCtrl'
+  }).state('card',{
+    url:'/card/:id',
+    templateUrl: '/views/card.html',
+    controller : 'CardCtrl'
+  }).state('orders',{
+    url:'/orders',
+    templateUrl: '/views/orders.html',
+    controller : 'OrdersCtrl'
+  }).state('checkout', {
+    url: '/card/:id/wrapper/:wid',
+    templateUrl: '/views/checkout.html',
+    controller: 'CheckoutCtrl'
   })
+
 
   $authProvider.google({
     clientId: '',

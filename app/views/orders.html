@@ -1,0 +1,22 @@
+<h2>My Orders</h2>
+<hr/>
+<table class="table table-striped table-hover">
+  <tr>
+    <th>Order Id</th>
+    <th>Card ID</th>
+    <th>Wrapper</th>
+    <th>To</th>
+    <th>Location</th>
+    <th>Delivery Time</th>
+    <th>Total price</th>
+  </tr>
+  <tr ng-repeat="order in orders">
+    <td>{{order.id}}</td>
+    <td>{{order.cardid}}</td>
+    <td>{{order.wrapperid}}</td>
+    <td>{{order.towhom}}</td>
+    <td>{{order.location}}</td>
+    <td>{{order.locatdeliverytimeion}}</td>
+    <td>{{order.totalprice}}</td>
+  </tr>
+</table>

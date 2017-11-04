@@ -228,3 +228,46 @@ footer {
 .img_circ {
   border-radius: 10px !important;
 }
+
+.box-wrapper-extended {
+  max-width:400px;
+  width:300px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #f3efdb;
+  padding: 30px;
+  border-radius: 10px;
+  display: inline-block;
+  overflow: hidden;
+  color: #020001;
+  cursor: pointer!important;
+}
+.box-wrapper-wrapper {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #f3efdb;
+  margin:px;
+  padding: px;
+  border-radius: 10px;
+  max-width: 200px;
+  display: inline-block;
+  /*overflow: hidden;*/
+  /*width: 100px;*/
+  color: #020001;
+  cursor: pointer!important;
+}
+
+
+.box-wrapper-checkout {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #f3efdb;
+  margin:10px;
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 100%;
+  overflow: hidden;
+  width: 1005;
+  color: #020001;
+  cursor: pointer!important;
+}

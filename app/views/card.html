@@ -1,0 +1,26 @@
+<div class="container-fluid">
+  <div class="col-sm-6" >
+    <div align="center" class="box-wrapper-extended">
+
+      <h4 class="lead">{{card.name}}</h4>
+      <img class="img img_circ img-responsive" ng-src="{{card.image}}""/>
+      <br/>
+      <hr/>
+      <p>RS {{card.price}} /=</p>
+      <p><span ng-repeat="location in movie.locations"> [ {{location.name}} - {{location.location}} ] </span></p>
+      <br/>
+
+    </div>
+
+  </div>
+
+  <h1> Select a wrapping paper</h1>
+<a  href="/#!/card/{{card.id}}/wrapper/{{wrap.id}}" class="no-styles" ng-repeat="wrap in wrappers |filter: searchText " ><div align="center" class="box-wrapper-wrapper">
+
+  <p class="">{{wrap.name}}</p>
+  <img class="img img_circ img-responsive" width="50" height="50" ng-src="{{wrap.image}}"/>
+  <hr/>
+  <p>RS {{wrap.price}} /=</p>
+  <br/>
+</div>
+</a>
