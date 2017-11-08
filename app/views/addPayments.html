@@ -1,0 +1,21 @@
+<form>
+  <div class="form-group">
+    <label class="col-form-label">Order Id</label>
+    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input" ng-model="orderId">
+  </div>
+  <div class="form-group">
+    <label class="col-form-label">User Name</label>
+    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input" ng-model="userName">
+  </div>
+  <div class="form-group">
+    <label class="col-form-label">Total Amount</label>
+    <input type="text" class="form-control is-invalid" id="formGroupExampleInput2" placeholder="Another input" ng-model="totalAmount">
+  </div>
+  <div class="form-group">
+    <label class="col-form-label">Card No</label>
+    <input type="text" class="form-control is-invalid" id="formGroupExampleInput2" placeholder="Credit/Debit Card No" ng-model="cardNo" maxlength="10" minlength="10">
+  </div>
+  <div class="form-group">
+<center><button type="button" class="btn btn-primary" ng-click="submit()">Pay</button></center>
+  </div>
+</form>

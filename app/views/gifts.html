@@ -1,0 +1,65 @@
+<div class="">
+              <div class="page-title">
+                  <div class="title_left">
+                      <h3>Welcome to gift center</h3>
+                  </div>
+                  <div class="title_right">
+                      <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                          <div class="input-group">
+                              <input type="text" class="form-control" placeholder="Search by category" ng-model="categoryname">
+                              <span class="input-group-btn">
+                                  <button class="btn btn-default" type="button" ng-click="searchByCategory()">Go!</button>
+                              </span>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <!-- <div class="col-md-12 col-sm-12 col-xs-12"> -->
+                  <div class="x_panel">
+                      <div class="x_title">
+                            <div class="clearfix"></div>
+                      </div>
+                      <div class="x_content">
+                          <div class="table-responsive">
+                              <table class="table table-striped jambo_table bulk_action">
+                                  <thead>
+                                      <tr class="headings">
+                                          <th class="column-title">Select</th>
+                                          <th class="column-title">Product ID </th>
+                                          <th class="column-title">Type of the item</th>
+                                          <th class="column-title">Type of the product </th>
+                                          <th class="column-title">Category of the product </th>
+                                          <th class="column-title">Price </th>
+                                          <th class="column-title">Size </th>
+                                          <th class="column-title">Color</th>
+                                          <th class="column-title">Image</th>
+                                          <!-- <th class="column-title">Rate</th>
+                                          <th class="column-title">Select</th>
+                                          <th class="bulk-actions" colspan="7"> -->
+                                          <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      <tr ng-repeat="Product in Products">
+                                          <td class="a-center ">
+                                              <input type="checkbox" class="flat" value="{{Product.Products}}" name="table_records" ng-model="Product.selected">
+                                          </td>
+                                          <td> {{Product.productId}}</td>
+                                          <td> {{Product.class}}</td>
+                                          <td> {{Product.type}}</td>
+                                          <td> {{Product.category}}</td>
+                                          <td> {{Product.price}}</td>
+                                          <td> {{Product.size}}</td>
+                                          <td> {{Product.color}}</td>
+                                          <td> <img ng-src="{{Product.image}}"></td>
+                                          <!-- <td><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-shopping-cart"></span></button></td> -->
+                                          <!-- <td><button type="button" class="btn btn-default" data-toggle="modal" data-target="#Myrate">Rates</button></td> -->
+                                     </tr>
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+                  </div>
+              <!-- </div> -->
+          </div>

@@ -21,7 +21,7 @@ angular.module('justforfunApp').directive('validateEquals', function () {
 
         scope.$watch(attrs.validateEquals,function(){
           ngModelCtrl.$setViewValue(ngModelCtrl.$viewValue);
-        })
+        });
       }
     };
   });

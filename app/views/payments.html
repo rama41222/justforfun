@@ -1,0 +1,50 @@
+<!-- <div class="right_col" role="main" ng-controller="paymentController"> -->
+  <form class="form-inline">
+
+    <div class="col-md-6 col-sm-6 col-xs-12">
+    </div>
+      <div class="col-md-6 col-sm-6 col-xs-12">
+      <div class="form-group mx-sm-6">
+        <label class="sr-only">User Name</label>
+          <input type="text" class="form-control" ng-model="username" placeholder="User name">
+      </div>
+      <button type="submit" class="btn btn-primary" ng-click="getPayments()">search</button>
+    </div>
+<!-- </div> -->
+</form>
+<!-- </div> -->
+
+                    <div class="x_panel">
+                        <div class="x_title">
+                              <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <div class="table-responsive">
+                                <table class="table table-striped jambo_table bulk_action">
+                                    <thead>
+                                        <tr class="headings">
+                                            <th class="column-title">Select</th>
+                                            <!-- <th class="column-title">Payment Id</th> -->
+                                            <th class="column-title">Paid Amount </th>
+                                            <th class="column-title">Card No </th>
+                                            <th class="column-title">Order Id </th>
+                                            <th class="column-title">Paid Date</th>
+
+                                        </tr>
+                                      </thead>
+                                    <tbody>
+                                        <tr ng-repeat="payment in payments">
+                                          <td class="a-center ">
+                                            <input type="checkbox" class="flat" name="table_records" value="{{payment.productId}}"  ng-model="payment.selected">
+                                          </td>
+                                            <!-- <td> {{payment.paymentId}}</td> -->
+                                            <td> {{payment.paidAmount}}</td>
+                                            <td> {{payment.cardNo}}</td>
+                                            <td> {{payment.orderId}}</td>
+                                            <td> {{payment.paidDate}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
