@@ -1,0 +1,23 @@
+<br/>
+<div class="row">
+  <div  align="" class="col-md-12">
+    <input type="text" style="margin:5%; width:80%;height:40px;font-size: 25px;color:#f3c392;border-radius: 7px; border-width: 1px;padding:20px;border-style: solid; border-color:#d0a699;" placeholder="Search a Card" ng-model="searchText"/>
+    <br/>
+  </div>
+</div>
+<br/>
+<br/>
+<br/>
+
+</div>
+<a  href="/#!/card/{{card.id}}" class="no-styles" ng-repeat="card in cards |filter: searchText " ><div align="center" class="box-wrapper">
+  <h4 class="lead">{{card.name}}</h4>
+  <span><img class="img img_circ img-responsive" ng-src="{{card.image}}""/></span>
+  <br/>
+  <hr/>
+  <p>RS {{card.price}} /=</p>
+  <p><span ng-repeat="location in movie.locations"> [ {{location.name}} - {{location.location}} ] </span></p>
+  <br/>
+
+</div>
+</a>

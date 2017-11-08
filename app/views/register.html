@@ -5,7 +5,7 @@
 
 
   <input name="password" ng-model="password" type="password" class="form-control" placeholder="Password" required/>
-  <input name="password_confirm" ng-model="password_confirm" type="password" class="form-control" placeholder="Confirm Password" validate-equals="password"/>
+  <input name="password_confirm" ng-model="password_confirm" type="password" class="form-control" placeholder="Confirm Password" validate-equals="password" required/>
   <p class="help-block" ng-show="register.password_confirm.$dirty && register.password_confirm.$invalid">Passwords Do Not Match</p>
   <button ng-disabled="register.$invalid" class="btn btn-lg btn-primary btn-block" type="submit">
     Sign Up!
